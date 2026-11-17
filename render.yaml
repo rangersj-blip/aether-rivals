@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: aether-rivals
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    disk:
+      name: player-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: AETHER_DATA_DIR
+        value: /var/data

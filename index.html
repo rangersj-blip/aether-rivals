@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aether Rivals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">A</div>
+          <div>
+            <div class="brand-name">Aether Rivals</div>
+            <div class="brand-sub">Hero shooter</div>
+          </div>
+        </div>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-link active" data-nav="deploy">Deploy</button>
+          <button class="nav-link" data-nav="battlefeed">Battlefeed</button>
+          <button class="nav-link" data-nav="arena">Arena</button>
+          <button class="nav-link" data-nav="ranked">Ranked</button>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="btn btn-secondary" id="settingsButton">Settings</button>
+          <button class="btn btn-secondary" id="controlsButton">Controls</button>
+          <button class="btn btn-primary" id="playButton">Play Now</button>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <aside class="side-panel left-panel">
+          <div class="panel-title">Deploy team</div>
+
+          <div class="hero-selector" id="heroSelector">
+            <button class="hero-option active" data-hero="vanguard">
+              <span class="hero-portrait portrait-vanguard" aria-hidden="true">
+                <svg viewBox="0 0 64 64"><path d="M5 53 13 34l9-5h20l9 5 8 19-16 7H21z" /><path d="m18 31 3-16 11-8 11 8 3 16-14 8z" /><path d="m22 22 10-4 10 4-2 7H24z" /><path d="m11 42 13 3-3 13-16-5z" /></svg>
+              </span>
+              <span>
+                <strong>Vanguard</strong>
+                <small>Frontline · 350 HP</small>
+              </span>
+            </button>
+            <button class="hero-option" data-hero="striker">
+              <span class="hero-portrait portrait-striker" aria-hidden="true">
+                <svg viewBox="0 0 64 64"><path d="m8 57 8-18 7-5h18l7 5 8 18-17 4H24z" /><path d="m20 34 1-17 11-11 12 11 1 17-13 7z" /><path d="m21 19 11-9 12 9-5 5H26z" /><path d="m21 26 9 2-4 4-6-2zm13 2 9-2 1 4-7 2z" /><path d="m9 39 8-5 3 4-7 10z" /></svg>
+              </span>
+              <span>
+                <strong>Striker</strong>
+                <small>Duelist · 250 HP</small>
+              </span>
+            </button>
+            <button class="hero-option" data-hero="oracle">
+              <span class="hero-portrait portrait-oracle" aria-hidden="true">
+                <svg viewBox="0 0 64 64"><path d="M10 58 16 37l10-6h13l10 6 6 21-17 4H25z" /><path d="M22 31 19 18l13-12 13 12-3 13-10 7z" /><path d="m20 18 12-7 12 7-4 5H24z" /><path d="m25 25 7 3 7-3-2 5-5 2-5-2z" /><circle cx="32" cy="12" r="3" /></svg>
+              </span>
+              <span>
+                <strong>Oracle</strong>
+                <small>Strategist · 275 HP</small>
+              </span>
+            </button>
+            <button class="hero-option" data-hero="warden">
+              <span class="hero-portrait portrait-warden" aria-hidden="true">
+                <svg viewBox="0 0 64 64"><path d="M7 56 13 37l10-7h18l10 7 6 19-16 6H23z" /><path d="m19 32 2-14 11-10 11 10 2 14-13 8z" /><path d="m21 20-7-8 13 4m16 4 7-8-13 4" /><path d="m22 22 10-4 10 4-3 9H25z" /><path d="m25 27 7 2 7-2-2 6-5 2-5-2z" /></svg>
+              </span>
+              <span>
+                <strong>Warden</strong>
+                <small>Controller · 325 HP</small>
+              </span>
+            </button>
+          </div>
+
+          <div class="ability-card">
+            <div class="ability-label">Ability</div>
+            <h3 id="abilityName">Aether Pulse</h3>
+            <p id="abilityDescription">A close-range pulse blasts nearby enemies and restores your shield.</p>
+            <button class="ability-trigger" id="abilityButton">Use ability · F</button>
+          </div>
+
+          <div class="skin-card">
+            <div class="mini-label">Suit finish</div>
+            <div class="skin-options" role="group" aria-label="Choose a suit finish">
+              <button class="skin-option active" data-skin="ion" aria-label="Ion finish" title="Ion"></button>
+              <button class="skin-option skin-ember" data-skin="ember" aria-label="Ember finish" title="Ember"></button>
+              <button class="skin-option skin-prism" data-skin="prism" aria-label="Prism finish" title="Prism"></button>
+            </div>
+            <span id="skinName" class="skin-name">Ion</span>
+          </div>
+
+          <section class="map-card" aria-labelledby="mapPickerTitle">
+            <div class="mini-label" id="mapPickerTitle">Choose arena</div>
+            <div class="map-options" id="mapSelector" role="group" aria-label="Choose an arena">
+              <button class="map-option active" data-map="prism" aria-pressed="true">
+                <span class="map-thumbnail map-prism" aria-hidden="true"></span>
+                <span><strong>Prism District</strong><small>Open neon lanes</small></span>
+              </button>
+              <button class="map-option" data-map="foundry" aria-pressed="false">
+                <span class="map-thumbnail map-foundry" aria-hidden="true"></span>
+                <span><strong>Ember Foundry</strong><small>Close cover</small></span>
+              </button>
+              <button class="map-option" data-map="sanctum" aria-pressed="false">
+                <span class="map-thumbnail map-sanctum" aria-hidden="true"></span>
+                <span><strong>Astral Sanctum</strong><small>Crystal sightlines</small></span>
+              </button>
+            </div>
+          </section>
+
+          <button class="big-button" id="startButton">Start Match</button>
+        </aside>
+
+        <section class="arena-panel">
+          <div class="arena-map-label"><span>ACTIVE ARENA</span><strong id="arenaMapName">Prism District</strong></div>
+          <div class="hud">
+            <div class="hud-block health-hud">
+              <span>HP</span>
+              <strong id="hpValue">350 / 350</strong>
+              <div class="health-track" aria-hidden="true"><span id="hpProgress"></span></div>
+            </div>
+            <div class="hud-block energy-hud"><span>ENERGY</span><strong id="energyValue">100</strong></div>
+            <div class="hud-block ammo-hud"><span>AMMO · R RELOAD</span><strong id="ammoValue">18 / 18</strong></div>
+            <div class="hud-block"><span>ELIMS</span><strong id="scoreValue">0</strong></div>
+            <div class="hud-block"><span>WAVE</span><strong id="waveValue">1</strong></div>
+            <div class="hud-block"><span>TIMER</span><strong id="timerValue">00:00</strong></div>
+          </div>
+
+          <div class="controls-hint">WASD move <span>·</span> Mouse look <span>·</span> Click / Space fire <span>·</span> R reload <span>·</span> F ability <span>·</span> Shift dash <span>·</span> E / Q ultimate</div>
+          <div id="bossHealth" class="boss-health hidden" aria-live="polite">
+            <div class="boss-health-heading"><span>ELITE SIGNAL</span><strong id="bossName">The Colossus</strong><output id="bossHealthValue"></output></div>
+            <div class="boss-health-track"><span id="bossHealthProgress"></span></div>
+          </div>
+          <canvas id="gameCanvas" width="1280" height="720" tabindex="0" aria-label="Aether Rivals first-person playable arena. Click to capture the mouse."></canvas>
+
+          <div class="action-row">
+            <button class="action-button" id="dashButton">Dash</button>
+            <button class="action-button accent" id="ultimateButton">Ultimate</button>
+            <button class="action-button" id="audioButton" aria-pressed="true">Sound on</button>
+          </div>
+        </section>
+
+        <aside class="side-panel right-panel">
+          <div class="panel-title">Squad hub <span id="networkStatus" class="network-status">OFFLINE</span></div>
+          <div class="social-tabs" role="tablist" aria-label="Squad hub">
+            <button class="social-tab active" data-view="feed" role="tab" aria-selected="true">Feed</button>
+            <button class="social-tab" data-view="friends" role="tab" aria-selected="false">Friends</button>
+            <button class="social-tab" data-view="leaderboard" role="tab" aria-selected="false">Ranks</button>
+          </div>
+          <section class="social-view" data-panel="feed">
+            <ul id="battleFeed" class="battle-feed" aria-live="polite">
+              <li>Signal locked. Arena online.</li>
+              <li>Enemy swarm detected.</li>
+              <li>Start match to begin.</li>
+            </ul>
+          </section>
+          <section class="social-view hidden" data-panel="friends" aria-label="Online friends">
+            <p id="networkMessage" class="network-message" role="status">Connect to the game server to see friends and live ranks.</p>
+            <div id="accountForm" class="network-form">
+              <label for="usernameInput">Pilot name</label>
+              <input id="usernameInput" maxlength="16" autocomplete="username" placeholder="3–16 letters or numbers" />
+              <button id="connectButton" class="action-button">Connect / create profile</button>
+              <small>Use the same browser to reconnect to this profile.</small>
+            </div>
+            <div id="friendTools" class="friend-tools hidden">
+              <p class="friend-code-row">Your friend code <strong id="friendCode"></strong></p>
+              <label for="friendCodeInput">Add a friend by code</label>
+              <div class="friend-add-row">
+                <input id="friendCodeInput" maxlength="8" autocomplete="off" placeholder="Friend code" />
+                <button id="addFriendButton" class="action-button">Add</button>
+              </div>
+              <ul id="friendList" class="friend-list"></ul>
+            </div>
+          </section>
+          <section class="social-view hidden" data-panel="leaderboard" aria-label="Live server leaderboard">
+            <p class="demo-note">Live all-time elimination scores from this game server.</p>
+            <ol id="leaderboard" class="leaderboard"></ol>
+          </section>
+
+          <div class="mini-card">
+            <div class="mini-label">Objectives</div>
+            <div class="objective-row">
+              <span>Conduit control</span>
+              <strong id="captureValue">0%</strong>
+            </div>
+            <div class="capture-track"><span id="captureProgress"></span></div>
+            <p id="captureStatus" class="capture-status">Find and secure the conduit.</p>
+            <div class="objective-row">
+              <span>Eliminations</span>
+              <strong id="eliminationValue">0</strong>
+            </div>
+            <div class="objective-row">
+              <span>Combo</span>
+              <strong id="comboValue">x1</strong>
+            </div>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <div id="overlay" class="overlay hidden">
+      <div class="overlay-card">
+        <span class="eyebrow">Arena status</span>
+        <h2 id="overlayTitle">Mission ready</h2>
+        <p id="overlayText">Select a hero and begin the battle.</p>
+        <button class="btn btn-primary" id="restartButton">Deploy again</button>
+      </div>
+    </div>
+
+    <div id="settingsModal" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="overlay-card settings-card">
+        <button id="closeSettingsButton" class="settings-close" aria-label="Close settings">×</button>
+        <span class="eyebrow">Game setup</span>
+        <h2 id="settingsTitle">Settings</h2>
+        <label class="setting-row" for="sensitivitySetting">
+          <span>Mouse sensitivity <output id="sensitivityValue">0.25</output></span>
+          <input id="sensitivitySetting" type="range" min="0.001" max="0.008" step="0.0005" value="0.0025" />
+        </label>
+        <label class="setting-row" for="fovSetting">
+          <span>Field of view           <output id="fovValue">90°</output></span>
+          <input id="fovSetting" type="range" min="70" max="110" step="5" value="90" />
+        </label>
+        <label class="setting-row" for="volumeSetting">
+          <span>Sound volume <output id="volumeValue">65%</output></span>
+          <input id="volumeSetting" type="range" min="0" max="1" step="0.05" value="0.65" />
+        </label>
+        <button id="settingsAudioButton" class="action-button">Sound on</button>
+      </div>
+    </div>
+
+    <div id="controlsModal" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="controlsTitle">
+      <div class="overlay-card settings-card">
+        <button id="closeControlsButton" class="settings-close" aria-label="Close controls">×</button>
+        <span class="eyebrow">Field manual</span>
+        <h2 id="controlsTitle">Combat controls</h2>
+        <ul class="controls-list">
+          <li><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd><span>Move</span></li>
+          <li><kbd>Mouse</kbd><span>Aim · click to fire</span></li>
+          <li><kbd>Space</kbd><span>Fire</span></li>
+          <li><kbd>R</kbd><span>Reload</span></li>
+          <li><kbd>F</kbd><span>Hero ability</span></li>
+          <li><kbd>Shift</kbd><span>Dash</span></li>
+          <li><kbd>E</kbd> <kbd>Q</kbd><span>Ultimate</span></li>
+          <li><kbd>Esc</kbd><span>Release mouse / close dialog</span></li>
+        </ul>
+        <p>Secure the conduit to restore health and energy. Keep moving to evade enemy attacks.</p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
