@@ -35,18 +35,15 @@ Open http://localhost:8000. The game page, social API, and live updates all use
 this server. Player profiles and best scores are saved in the ignored
 `data/players.json` file; profile tokens stay in the browser that created them.
 
-## Publish a public solo-play version
+## Deploy the full online game
 
-GitHub Actions deploys the game to GitHub Pages whenever changes are pushed to
-`main`. In the repository settings, enable Pages with **GitHub Actions** as the
-build and deployment source. After the first successful workflow, share the
-`https://rangersj-blip.github.io/aether-rivals/` URL. The arena is playable, but
-profiles, friends, and live ranks need the Node server and are not available in
-this static version.
-
-For the full online features, the repository also includes a Render Blueprint
-in `render.yaml`. That setup requires a host your players can access, plus a
-paid web service and persistent disk to retain player profiles.
+The game needs its Node server for profiles, friends, scores, and live updates.
+Static hosting such as GitHub Pages cannot run those features. Deploy to a
+public Node.js host with persistent storage, set `AETHER_DATA_DIR` to the
+storage path, and use one server instance so online presence and live updates
+stay in sync. The Render Blueprint in `render.yaml` is one example, but requires
+a paid service and persistent disk. Use a host that you and your players are
+allowed to access.
 
 To play with friends on your local network, share the host machine's reachable
 address and port. For friends connecting over the public internet, deploy the
